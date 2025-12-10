@@ -6,6 +6,17 @@
 # This Makefile completes the textual analysis of 4 novels and creates 
 # figures on the 10 most frequently occurring words from each novel.
 
+# Usage:
+# make all    - run the entire pipeline
+# make clean  - remove all generated files
+
+# Define all figure files for the report dependency
+FIGURE_FILES = results/figure/isles.png results/figure/abyss.png \
+               results/figure/last.png results/figure/sierra.png
+
+# Default target
+all: report/count_report.html
+
 # Step 1: Count words in each book
 results/isles.dat: data/isles.txt scripts/wordcount.py
 	python scripts/wordcount.py --input_file=data/isles.txt --output_file=results/isles.dat
@@ -31,3 +42,16 @@ results/figure/last.png: results/last.dat scripts/plotcount.py
 
 results/figure/sierra.png: results/sierra.dat scripts/plotcount.py
 	python scripts/plotcount.py --input_file=results/sierra.dat --output_file=results/figure/sierra.png
+
+# Step 3: Render the report
+report/count_report.html: $(FIGURE_FILES) report/count_report.qmd
+	quarto render report/count_report.qmd
+
+# Clean target - remove all generated files
+clean:
+	rm -f results/*.dat
+	rm -f results/figure/*.png
+	rm -f report/count_report.html
+	rm -rf report/count_report_files
+
+.PHONY: all clean
