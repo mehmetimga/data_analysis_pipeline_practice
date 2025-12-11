@@ -37,7 +37,7 @@ conda activate ia4
 2.1.3 Run the analysis:
 
 ```
-bash runall.sh
+make all
 ```
 
 </details>
@@ -60,7 +60,7 @@ conda activate ia4
 2.2.3 Run the analysis:
 
 ```
-bash runall.sh
+make all
 ```
 
 </details>
@@ -77,7 +77,7 @@ docker compose run --rm ia4
 2.3.3 You will land directly in the terminal of the container. Run the analysis:
 
 ```
-bash runall.sh
+make all
 ```
 
 2.3.4 After you are done, type `exit` to leave docker container.
