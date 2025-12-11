@@ -15,7 +15,7 @@ FIGURE_FILES = results/figure/isles.png results/figure/abyss.png \
                results/figure/last.png results/figure/sierra.png
 
 # Default target
-all: report/count_report.html
+all: docs/index.html
 
 # Step 1: Count words in each book
 results/isles.dat: data/isles.txt scripts/wordcount.py
@@ -44,8 +44,10 @@ results/figure/sierra.png: results/sierra.dat scripts/plotcount.py
 	python scripts/plotcount.py --input_file=results/sierra.dat --output_file=results/figure/sierra.png
 
 # Step 3: Render the report
-report/count_report.html: $(FIGURE_FILES) report/count_report.qmd
+docs/index.html: $(FIGURE_FILES) report/count_report.qmd
 	quarto render report/count_report.qmd
+	mkdir -p docs
+	cp report/count_report.html docs/index.html
 
 # Clean target - remove all generated files
 clean:
@@ -53,5 +55,6 @@ clean:
 	rm -f results/figure/*.png
 	rm -f report/count_report.html
 	rm -rf report/count_report_files
+	rm -rf docs
 
 .PHONY: all clean
