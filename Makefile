@@ -46,8 +46,9 @@ results/figure/sierra.png: results/sierra.dat scripts/plotcount.py
 # Step 3: Render the report
 docs/index.html: $(FIGURE_FILES) report/count_report.qmd
 	quarto render report/count_report.qmd
-	mkdir -p docs
+	mkdir -p docs/results/figure
 	cp report/count_report.html docs/index.html
+	cp results/figure/*.png docs/results/figure/
 
 # Clean target - remove all generated files
 clean:
