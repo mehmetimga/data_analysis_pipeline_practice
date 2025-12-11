@@ -48,6 +48,7 @@ docs/index.html: $(FIGURE_FILES) report/count_report.qmd
 	quarto render report/count_report.qmd
 	mkdir -p docs/results/figure
 	cp report/count_report.html docs/index.html
+	sed -i '' 's|../results/figure/|results/figure/|g' docs/index.html
 	cp results/figure/*.png docs/results/figure/
 
 # Clean target - remove all generated files
