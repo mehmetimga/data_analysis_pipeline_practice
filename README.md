@@ -18,8 +18,8 @@ novels. It reports the top 10 most occurring words in each book in a [report](do
 Clone this repo, and using the command line, navigate to the root of this project.
 
 ```bash
-git clone <repo_name>
-cd <folder_name>
+git clone git@github.com:mehmetimga/data_analysis_pipeline_practice.git
+cd data_analysis_pipeline_practice
 ```
 
 ### 2. Recreate the computational environment
